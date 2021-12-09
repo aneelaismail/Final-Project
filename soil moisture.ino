@@ -1,14 +1,15 @@
 int WET= 3; 
 int DRY= 2;  
-int motor= 6;
-int Sensor= A0; // Soil Sensor input at Analog PIN A0
+int Sensor= 0; // Soil Sensor input at Analog PIN A0
 int value= 0;
+int relay = 4;
 
 void setup() {
    Serial.begin(9600);
    pinMode(WET, OUTPUT);
    pinMode(DRY, OUTPUT);
-   delay(2000);
+   pinMode(relay, OUTPUT);
+   delay(100);
 }
 
 void loop() {
@@ -19,15 +20,15 @@ void loop() {
    if(value<50)
    {
       digitalWrite(WET, HIGH);
-      digitalWrite(motor, LOW);
+      digitalWrite(relay, LOW);
    }
    else
    {
       digitalWrite(DRY,HIGH);
-      digitalWrite(motor,HIGH);
+      digitalWrite(relay, HIGH);
    }
    delay(1000);
    digitalWrite(WET,LOW);
    digitalWrite(DRY, LOW);
-   digitalWrite(motor,LOW);
+   digitalWrite(relay, HIGH);
 }
